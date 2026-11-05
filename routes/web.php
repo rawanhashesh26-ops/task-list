@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Pest\Support\View;
+use Illuminate\Support\Facades\DB;
+//use Pest\Support\View;
 
 Route::get('/', function () {
     return view('welcome');
@@ -27,4 +28,13 @@ Route::post('/about', function () {
         '3' => 'Sales',
     ];
     return view(view:'about', data: compact('name'));
+});
+Route::get('tasks' , function(){
+    return view('tasks');
+});
+
+Route::post('create' , function(){
+    $task_name =$_POST['name'];
+    DB::table('tasks')-> insert(['name' => $task_name]);
+    return view('tasks');
 });
