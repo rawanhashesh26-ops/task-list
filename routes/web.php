@@ -30,11 +30,18 @@ Route::post('/about', function () {
     return view(view:'about', data: compact('name'));
 });
 Route::get('tasks' , function(){
-    return view('tasks');
+    $tasks = DB::table('tasks') ->get();
+    return view('tasks', compact('tasks'));
 });
 
 Route::post('create' , function(){
     $task_name =$_POST['name'];
     DB::table('tasks')-> insert(['name' => $task_name]);
-    return view('tasks');
+    return redirect()->back();
+});
+
+Route::post('delete/{id}', function($id){
+DB::table('tasks')->where('id', $id)->delete();
+
+return redirect()->back();
 });

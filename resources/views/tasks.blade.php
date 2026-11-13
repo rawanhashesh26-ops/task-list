@@ -69,36 +69,19 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($tasks as $task)
                             <tr>
-                                <td>Task 1</td>
+                                <td>{{$task->name}}</td>
                                 <td>
-                                    <form action="#" method="POST" class="d-inline">
+                                    <form action="/delete/{{$task->id}}" method="POST" class="d-inline">
+                                        @csrf
                                         <button type="submit" class="btn btn-danger">
                                             <i class="fa fa-trash me-2"></i>Delete
                                         </button>
                                     </form>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>Task 2</td>
-                                <td>
-                                    <form action="#" method="POST" class="d-inline">
-                                        <button type="submit" class="btn btn-danger">
-                                            <i class="fa fa-trash me-2"></i>Delete
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Task 3</td>
-                                <td>
-                                    <form action="#" method="POST" class="d-inline">
-                                        <button type="submit" class="btn btn-danger">
-                                            <i class="fa fa-trash me-2"></i>Delete
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
